@@ -35,7 +35,7 @@ FloorRobotsFrame::~FloorRobotsFrame()
 void FloorRobotsFrame::doUserQuit()
 {
     /* make sure we call the base class method when we're done */
-	MT_RobotFrameBase::doUserQuit();
+    MT_RobotFrameBase::doUserQuit();
 }
 
 /* Gets called when the application is being initialized.  Use this to
@@ -67,10 +67,10 @@ void FloorRobotsFrame::initTracker()
     /* m_pTracker should be NULL initially - if it's not, then
      * this function has already been called and we should just
      * ignore this request */
-	if(m_pTracker)
-	{
-		return;
-	}
+    if(m_pTracker)
+    {
+        return;
+    }
 
     /* TEMPORARY: just return */
     return;
@@ -82,7 +82,7 @@ void FloorRobotsFrame::initTracker()
      * a placeholder function that sets m_pTracker to NULL! */
 
     /* not sure if we need to do this again */
-	setTimer(FRAME_PERIOD_MSEC);
+    setTimer(FRAME_PERIOD_MSEC);
 }
 
 /* Gets called when this window has focus and a user presses a key. */
@@ -95,28 +95,28 @@ bool FloorRobotsFrame::doKeyboardCallback(wxKeyEvent& event)
      * to skip the base functionality */
 
     /* by default, we *do* want to do the base functionality */
-	bool result = MT_DO_BASE_KEY;
+    bool result = MT_DO_BASE_KEY;
 
     /* tells us what key was pressed
      *   (it's also possible to get the x,y coordinates of the
      *     mouse and if any modifier keys (shift, ctrl, etc)
      *     were pressed) */
-   	char k = event.GetKeyCode();
+    char k = event.GetKeyCode();
 
     /* just as an example */
-	switch(k)
-	{
-	case 'g':
+    switch(k)
+    {
+    case 'g':
         fprintf(stdout, "You pressed 'g'!\n");
-		break;
-	}
+        break;
+    }
 
     /* give the base class a chance to handle the key */
-	bool tresult = MT_RobotFrameBase::doKeyboardCallback(event);
+    bool tresult = MT_RobotFrameBase::doKeyboardCallback(event);
 
     /* the return value tells the underlying event system
      *  how to handle this event */
-	return result && tresult;
+    return result && tresult;
 }
 
 
@@ -127,7 +127,7 @@ bool FloorRobotsFrame::doMouseCallback(wxMouseEvent& event, double viewport_x, d
     /* this is handled in the same way that the keyboard callback is
      * handled; see doKeyboardCallback */
 
-	bool result = MT_DO_BASE_MOUSE;
+    bool result = MT_DO_BASE_MOUSE;
 
     /* TEMPORARY: just examples */
     fprintf(stdout, "Mouse at %f, %f\n", viewport_x, viewport_y);
@@ -176,9 +176,9 @@ MT_ControlFrameBase* FloorRobotsFrame::createControlDialog()
      * to various pointers that need it that way.  There shouldn't
      * be any need to modify this.  */
     m_pFloorRobotsControlFrame = new FloorRobotsControlFrame(this);
-	m_pRobotControlFrame = (MT_RobotControlFrameBase *) m_pFloorRobotsControlFrame;
-	m_pTrackerControlFrame = (MT_TrackerControlFrameBase *) m_pRobotControlFrame; 
-	return (MT_ControlFrameBase*) m_pRobotControlFrame;
+    m_pRobotControlFrame = (MT_RobotControlFrameBase *) m_pFloorRobotsControlFrame;
+    m_pTrackerControlFrame = (MT_TrackerControlFrameBase *) m_pRobotControlFrame; 
+    return (MT_ControlFrameBase*) m_pRobotControlFrame;
 }
 
 /**********************************************************************
